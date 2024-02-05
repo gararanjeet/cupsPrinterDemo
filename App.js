@@ -5,8 +5,13 @@ const {CupsPrinterModule} = NativeModules;
 
 const App = () => {
   const [printer, setPrinter] = useState('');
-  const onPress = () => {
-    console.log(CupsPrinterModule);
+  const onPress = async () => {
+    try {
+      const printer = await CupsPrinterModule.connectPrinter('', '');
+      console.log(printer);
+    } catch (e) {
+      console.log(e);
+    }
   };
 
   return (
