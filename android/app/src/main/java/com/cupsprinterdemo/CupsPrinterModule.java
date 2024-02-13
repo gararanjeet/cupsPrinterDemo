@@ -29,9 +29,17 @@ public class CupsPrinterModule extends ReactContextBaseJavaModule {
 
 
     @ReactMethod
-    public void connectPrinter(String address, String url, Promise promise) {
+    public void connectPrinter(String url, Promise promise) {
         CupsPrinter cupsPrinter = null;
+        String address = "";
          try{
+             try {
+                 int beginIndex = url.indexOf("http://") + 7;
+                 int endIndex = url.indexOf(":631");
+                 address =  url.substring(beginIndex, endIndex);
+             } catch (Exception e) {
+                 address = "";
+             }
             CupsClient cupsClient = new CupsClient(address, 631);
             URL printerURL = new URL(url);
             cupsPrinter = cupsClient.getPrinter(printerURL);
