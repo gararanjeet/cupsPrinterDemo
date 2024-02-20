@@ -35,16 +35,13 @@ public class CupsPrinterModule extends ReactContextBaseJavaModule {
 
 
     @ReactMethod
-    public void connectPrinter(String url, Promise promise) {
+    public void connectPrinter(String url, String host, Promise promise) {
         CupsPrinter cupsPrinter = null;
-        String address = "";
         PrintRequestResult  result = null;
          try{
-//            CupsClient cupsClient = new CupsClient("10.18.6.2", 631);
-             CupsClient cupsClient = new CupsClient("192.168.10.247", 631);
+             CupsClient cupsClient = new CupsClient(host, 631);
 
-            URL printerURL = new URL("http://192.168.10.247:631/printers/Brother_DCP-B7535DW_series");
-//             URL printerURL = new URL("http://10.18.6.2:631/printers/panda");
+            URL printerURL = new URL(url);
             cupsPrinter = cupsClient.getPrinter(printerURL);
             String zpl = "^XA" +
                     "^FO50,60^A0,40^FDWorld's Best Griddle^FS" +

@@ -1,5 +1,6 @@
-import React, {useState} from 'react';
+import React, {useEffect, useState} from 'react';
 import {Text, TextInput, ToastAndroid, View} from 'react-native';
+import crashlytics from '@react-native-firebase/crashlytics';
 import {NativeModules, Button} from 'react-native';
 const {CupsPrinterModule} = NativeModules;
 

@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "753045035115",
+    "project_id": "cupsprinterdemo",
+    "storage_bucket": "cupsprinterdemo.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:753045035115:android:78f2783d1ec9e4eac7792e",
+        "android_client_info": {
+          "package_name": "com.cupsprinterdemo"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyD6SAvXX88U19yZ1kHVKLrgiqiGrmMe9Hs"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
