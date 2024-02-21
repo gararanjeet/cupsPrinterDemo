@@ -1,12 +1,14 @@
 import React, {useEffect, useState} from 'react';
 import {Text, TextInput, ToastAndroid, View} from 'react-native';
-import crashlytics from '@react-native-firebase/crashlytics';
 import {NativeModules, Button} from 'react-native';
 const {CupsPrinterModule} = NativeModules;
 
 const App = () => {
   const [printer, setPrinter] = useState('');
-  const [url, setUrl] = useState('');
+  const [url, setUrl] = useState(
+    'http://192.168.10.247:631/printers/Brother_DCP-B7535DW_series',
+  );
+  const [host, setHost] = useState('');
   const onPress = async () => {
     let printerObj = '';
     if (url === '') {
@@ -14,8 +16,12 @@ const App = () => {
       return;
     }
     try {
-      printerObj = await CupsPrinterModule.connectPrinter('');
-      console.log(printer);
+      let strs = url.split(':');
+      setHost(() => strs[1].slice(2));
+      printerObj = await CupsPrinterModule.connectPrinter(
+        url,
+        strs[1].slice(2),
+      );
     } catch (e) {
       printerObj = e;
       console.log(e, 'here');
@@ -35,6 +41,13 @@ const App = () => {
         }}
       />
       <Button title="Connect to Printer" color="#841584" onPress={onPress} />
+      {host && (
+        <>
+          <Text style={{color: 'black'}}>Url: {url}</Text>
+          <Text style={{color: 'black'}}>Host: {host}</Text>
+        </>
+      )}
+
       <Text style={{color: 'black'}}>{printer}</Text>
     </View>
   );
